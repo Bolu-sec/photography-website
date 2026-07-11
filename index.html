@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="A responsive one-page photography website."
+  />
+
+  <title>Lumière Photography</title>
+
+  <style>
+    :root {
+      --primary-color: #b07a55;
+      --primary-dark: #8d5d3f;
+      --dark-color: #171717;
+      --light-color: #f7f3ef;
+      --white-color: #ffffff;
+      --grey-color: #666666;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--white-color);
+      color: var(--dark-color);
+      line-height: 1.6;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    /* Landing section */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      color: var(--white-color);
+
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, 0.58),
+          rgba(0, 0, 0, 0.58)
+        ),
+        url("https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=2000&q=85");
+
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .navbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 24px 0;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.7rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .nav-link {
+      font-weight: bold;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      border-color: var(--primary-color);
+    }
+
+    .hero-content {
+      max-width: 720px;
+      padding: 120px 0 70px;
+    }
+
+    .small-heading {
+      margin-bottom: 12px;
+      color: #f2d3bd;
+      font-size: 0.9rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 700px;
+      margin-bottom: 20px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 1;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      margin-bottom: 34px;
+      color: #f0f0f0;
+      font-size: 1.15rem;
+    }
+
+    .gallery-button {
+      display: inline-block;
+      padding: 15px 28px;
+      border: 2px solid var(--primary-color);
+      border-radius: 4px;
+      background-color: var(--primary-color);
+      color: var(--white-color);
+      font-weight: bold;
+
+      transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .gallery-button:hover {
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Gallery introduction */
+
+    .gallery-introduction {
+      padding: 90px 0 50px;
+      background-color: var(--light-color);
+      text-align: center;
+    }
+
+    .section-title {
+      margin-bottom: 16px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+    }
+
+    .section-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--grey-color);
+      font-size: 1.05rem;
+    }
+
+    /* Gallery section */
+
+    .gallery-section {
+      padding: 70px 0 100px;
+      background-color: var(--light-color);
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
+    .gallery-item {
+      position: relative;
+      flex: 1 1 calc(33.333% - 22px);
+      min-width: 280px;
+      overflow: hidden;
+      border-radius: 8px;
+      background-color: #dddddd;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-item img {
+      height: 360px;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 24px 18px 16px;
+      color: var(--white-color);
+      font-weight: bold;
+
+      background:
+        linear-gradient(
+          transparent,
+          rgba(0, 0, 0, 0.8)
+        );
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 70px 0 30px;
+      background-color: var(--dark-color);
+      color: var(--white-color);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-brand,
+    .contact-details {
+      flex: 1 1 300px;
+    }
+
+    .footer-brand h2,
+    .contact-details h3 {
+      margin-bottom: 16px;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .footer-brand p,
+    .contact-details p {
+      color: #cfcfcf;
+    }
+
+    .contact-details a {
+      color: #f0c3a4;
+    }
+
+    .contact-details a:hover {
+      text-decoration: underline;
+    }
+
+    .copyright {
+      margin-top: 45px;
+      padding-top: 22px;
+      border-top: 1px solid #3d3d3d;
+      color: #a8a8a8;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* Tablet media query */
+
+    @media screen and (max-width: 900px) {
+      .hero {
+        min-height: 85vh;
+      }
+
+      .gallery-item {
+        flex-basis: calc(50% - 22px);
+      }
+    }
+
+    /* Mobile media query */
+
+    @media screen and (max-width: 600px) {
+      .navbar {
+        padding: 18px 0;
+      }
+
+      .nav-content {
+        align-items: flex-start;
+      }
+
+      .logo {
+        font-size: 1.35rem;
+      }
+
+      .hero-content {
+        padding-top: 130px;
+      }
+
+      .hero-text {
+        font-size: 1rem;
+      }
+
+      .gallery-button {
+        width: 100%;
+        text-align: center;
+      }
+
+      .gallery-introduction {
+        padding-top: 65px;
+      }
+
+      .gallery-section {
+        padding-bottom: 70px;
+      }
+
+      .gallery {
+        flex-direction: column;
+      }
+
+      .gallery-item {
+        min-width: 100%;
+      }
+
+      .gallery-item img {
+        height: 300px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Landing section -->
+
+  <header class="hero" id="home">
+
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="container nav-content">
+
+        <a href="#home" class="logo">
+          Lumière Photography
+        </a>
+
+        <a href="#gallery" class="nav-link">
+          Portfolio
+        </a>
+
+      </div>
+    </nav>
+
+    <div class="container hero-content">
+
+      <p class="small-heading">
+        Stories captured beautifully
+      </p>
+
+      <h1>
+        Life through a different lens.
+      </h1>
+
+      <p class="hero-text">
+        We create timeless photographs that preserve genuine
+        emotions, unforgettable places and the moments that
+        matter most.
+      </p>
+
+      <a href="#gallery" class="gallery-button">
+        View Our Work
+      </a>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Gallery heading -->
+
+    <section class="gallery-introduction">
+
+      <div class="container">
+
+        <p class="small-heading">
+          Selected portfolio
+        </p>
+
+        <h2 class="section-title">
+          Our Recent Work
+        </h2>
+
+        <p class="section-description">
+          Explore our collection of portraits, celebrations,
+          landscapes and everyday stories photographed with
+          creativity and attention to detail.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Photography gallery -->
+
+    <section
+      class="gallery-section"
+      id="gallery"
+      aria-label="Photography portfolio"
+    >
+
+      <div class="container gallery">
+
+        <figure class="gallery-item">
+
+          <img
+            src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80"
+            alt="Newly married couple celebrating outdoors"
+          />
+
+          <figcaption class="gallery-caption">
+            Weddings
+          </figcaption>
+
+        </figure>
+
+        <figure class="gallery-item">
+
+          <img
+            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1000&q=80"
+            alt="Professional portrait of a man"
+          />
+
+          <figcaption class="gallery-caption">
+            Portraits
+          </figcaption>
+
+        </figure>
+
+        <figure class="gallery-item">
+
+          <img
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80"
+            alt="Scenic mountain landscape"
+          />
+
+          <figcaption class="gallery-caption">
+            Travel
+          </figcaption>
+
+        </figure>
+
+        <figure class="gallery-item">
+
+          <img
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1000&q=80"
+            alt="Lifestyle portrait of a smiling woman"
+          />
+
+          <figcaption class="gallery-caption">
+            Lifestyle
+          </figcaption>
+
+        </figure>
+
+        <figure class="gallery-item">
+
+          <img
+            src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1000&q=80"
+            alt="Friends celebrating at an event"
+          />
+
+          <figcaption class="gallery-caption">
+            Events
+          </figcaption>
+
+        </figure>
+
+        <figure class="gallery-item">
+
+          <img
+            src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80"
+            alt="Concert crowd enjoying a live performance"
+          />
+
+          <figcaption class="gallery-caption">
+            Live Moments
+          </figcaption>
+
+        </figure>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Contact footer -->
+
+  <footer id="contact">
+
+    <div class="container">
+
+      <div class="footer-content">
+
+        <div class="footer-brand">
+
+          <h2>
+            Lumière Photography
+          </h2>
+
+          <p>
+            Portrait, wedding, event and lifestyle photography
+            created with care and a strong visual story.
+          </p>
+
+        </div>
+
+        <address class="contact-details">
+
+          <h3>
+            Contact the Photographer
+          </h3>
+
+          <p>
+            Photographer: Bolex
+          </p>
+
+          <p>
+            Phone:
+            <a href="tel:+2349122499540">
+              +234 912 249 9540
+            </a>
+          </p>
+
+          <p>
+            Email:
+            <a href="mailto:hello@lumierephotography.com">
+              hello@lumierephotography.com
+            </a>
+          </p>
+
+          <p>
+            Location: Lagos, Nigeria
+          </p>
+
+        </address>
+
+      </div>
+
+      <p class="copyright">
+        &copy; 2026 Lumière Photography. All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+
+</body>
+</html>
